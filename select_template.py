@@ -9,6 +9,7 @@ def select_temp(stdscr):
     temp = load_temp('/home/suisui/workspace/git-prefix-tool/template.yaml')
     cursor = 1
 
+    curses.curs_set(0)
     curses.use_default_colors()
     curses.init_pair(1, -1, curses.COLOR_GREEN)
     curses.init_pair(2, curses.COLOR_YELLOW, -1)
@@ -30,11 +31,6 @@ def select_temp(stdscr):
                 pass
 
             i += 1
-        
-        try:
-            stdscr.addstr(i,0,"")
-        except curses.error:
-            pass
 
         stdscr.refresh()
         key = stdscr.getkey()
