@@ -6,8 +6,7 @@ def load_temp(file_path):
         return temp
     
 def select_temp(stdscr):
-    # temp = load_temp('/opt/git-prefix-tool/template.yaml')
-    temp = load_temp('/home/yn4k4nishi/workspace/git-prefix-tool/template.yaml')
+    temp = load_temp('/opt/git-prefix-tool/template.yaml')
     max_len_prefix = max([len(y) for y in [i.get('prefix') for i in temp['prefix']]])
 
     cursor = 1
@@ -55,11 +54,3 @@ def select_temp(stdscr):
 
 if __name__ == "__main__":
     curses.wrapper(select_temp)
-
-    temp = load_temp('/home/yn4k4nishi/workspace/git-prefix-tool/template.yaml')
-    # len_max_emoji = max([len(i) for i in temp['prefix'][:]['emoji']])
-    # print(len_max_emoji)
-    
-    # for t in temp['prefix']:
-    #     print(t)
-        # print(t['emoji'] + '\t' + t['prefix'] + '\t' + t['ditail'])
