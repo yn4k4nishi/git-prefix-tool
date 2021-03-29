@@ -6,7 +6,7 @@ cd /opt
 
 if [ -d /opt/git-prefix-tool ] ; then
     cd git-prefix-tool
-    git pull
+    sudo git pull
     cd ..
 else
     sudo git clone -b dev https://github.com/yn4k4nishi/git-prefix-tool.git
