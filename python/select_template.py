@@ -27,10 +27,10 @@ def select_temp(stdscr):
             try:
                 if(i == cursor):
                     stdscr.addstr(i, 0, ">>" + t['emoji'] + '  ' + t['prefix'] + " "*(max_len_prefix + 3 - len(t['prefix'])), curses.color_pair(1))
-                    stdscr.addstr(i, max_len_prefix + 5,  " : " + t['ditail']                                               , curses.color_pair(1))
+                    stdscr.addstr(i, max_len_prefix + 8,  " : " + t['ditail']                                               , curses.color_pair(1))
                 else:
                     stdscr.addstr(i, 0, "  " + t['emoji'] + '  ' + t['prefix'])
-                    stdscr.addstr(i, max_len_prefix + 5,  " : " + t['ditail'])    
+                    stdscr.addstr(i, max_len_prefix + 8,  " : " + t['ditail'])    
             except curses.error:
                 pass
 
