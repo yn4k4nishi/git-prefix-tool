@@ -16,7 +16,7 @@ def add(stdscr):
     cmd = 'git diff --name-only'
     not_staged += (subprocess.Popen(cmd, stdout=subprocess.PIPE,shell=True).communicate()[0]).decode('utf-8').split('\n')[:-1]
    
-    selected = [False] * len(not_staged)
+    selected = [True] * len(not_staged)
 
     while True:
         stdscr.clear()

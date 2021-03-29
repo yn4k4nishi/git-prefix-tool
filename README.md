@@ -63,28 +63,28 @@ Pless Enter to go next
 テンプレートから選択し、Enterで次に進む
 ```
 Select Prefix List Below.
-  :sparkles: Feature : 新機能の実装
-  :+1: Update : 機能の修正
-  :wastebasket: Remove : 削除
-  :bug: Fix : バグの修正
-  :recycle: Refactor : リファクタリング
-  :pencil2: Typo : タイプミスなどの修正
-  :sound: Add-logs : ログの追加
-  :mute: Remove-logs : ログの削除
-> :books: Document : ドキュメントの変更
-  :art: Accessibility : デザインUI/UXの変更
-  :horse: Improve-perfomance : パフォーマンスの改善
-  :cop: Improve-security : セキュリティ関連の改善
-  :wrench: Tools : ツール
-  :rotating_light: Tests : テスト
-  :construction: WIP : Work In Progress
-  :bookmark: Version-tag : バージョンタグ
-  :tada: First : 初めてのコミット
+  Feature            : 新機能の実装
+  Update             : 機能の修正
+  Remove             : 削除
+  Fix                : バグの修正
+  Refactor           : リファクタリング
+  Typo               : タイプミスなどの修正
+  Add-logs           : ログの追加
+  Remove-logs        : ログの削除
+> Document           : ドキュメントの変更
+  Accessibility      : デザインUI/UXの変更
+  Improve-perfomance : フォーマンスの改善
+  Improve-security   : セキュリティ関連の改善
+  Tools              : ツール
+  Tests              : テスト
+  WIP                : Work In Progress
+  Version-tag        : バージョンタグ
+  First              : 初めてのコミット
 ```
 
 bodyを入力し、Enterで次に進む
 ```
-:books: Document : ドキュメントの変更
+:books: Document
 Write Body and Pless Enter.
   README.mdの更新
 ```
