@@ -12,7 +12,4 @@ sudo chmod 700 git-prefix-tool/git-prefix-tool.sh
 
 sudo ln git-prefix-tool/git-prefix-tool.sh /usr/local/bin/git-prefix-tool
 
-cd
-source .bashrc
-
 cd $SCRIPT_DIR
