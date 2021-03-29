@@ -4,8 +4,7 @@ import os, curses
 from select_template import select_temp
 
 def main(stdscr):
-    if not curses.has_colors(): raise Exception('このターミナルは色を表示できません。')
-    
+
     prefix = select_temp(stdscr)
 
     body = ""
@@ -43,6 +42,4 @@ def main(stdscr):
         else:
             body += key
         
-
-os.environ['TERM'] = 'xterm-256color'
 curses.wrapper(main)
