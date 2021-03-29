@@ -35,7 +35,7 @@ def commit(stdscr):
         if len(key) == 1 and ord(key) == 27: # ESC
             quit()
         elif key == '\n':
-            os.system("git commit -m '" + prefix + '\n' + body + "'")
+            os.system("git commit -m '" + prefix + ' : ' + body + "'")
             break
         elif key == 'KEY_BACKSPACE':
             body = body[:-1]

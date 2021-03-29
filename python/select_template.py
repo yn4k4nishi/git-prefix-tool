@@ -6,7 +6,8 @@ def load_temp(file_path):
         return temp
     
 def select_temp(stdscr):
-    temp = load_temp('/opt/git-prefix-tool/template.yaml')
+    # temp = load_temp('/opt/git-prefix-tool/template.yaml')
+    temp = load_temp('/home/yn4k4nishi/workspace/git-prefix-tool/template.yaml')
     max_len_prefix = max([len(y) for y in [i.get('prefix') for i in temp['prefix']]])
 
     cursor = 1
@@ -48,7 +49,7 @@ def select_temp(stdscr):
             cursor += 1
             cursor = min(cursor, len(temp['prefix']))
         elif key == '\n':
-            return temp['prefix'][cursor-1]['emoji'] + temp['prefix'][cursor-1]['prefix']
+            return temp['prefix'][cursor-1]['emoji'] +  " " + temp['prefix'][cursor-1]['prefix']
 
         
 
