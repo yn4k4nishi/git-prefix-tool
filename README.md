@@ -20,7 +20,22 @@
 |:bookmark:       | Version-tag        | バージョンタグ|
 |:tada:           | First              | 初めてのコミット|
 
-## install
+## インストール
 ```bash
 wget -qO - https://raw.githubusercontent.com/yn4k4nishi/git-prefix-tool/main/install.sh | bash
 ```
+
+## 使い方
+bashターミナルで
+```bash
+git prefix-tool
+```
+を実行
+
+矢印キーで移動、SPACEで選択し、
+>Select Add Files (pless SPACE Key to check).
+>    [Select ALL]
+>   *README.md
+>    hoge.cpp
+>
+>Pless Enter to go next
