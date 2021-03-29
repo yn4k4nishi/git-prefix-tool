@@ -89,7 +89,7 @@ Write Body and Pless Enter.
   README.mdの更新
 ```
 
-Pushするかを選択する
+Pushするかを選択する.
 何も入力せずにEnterを押すとPushされる
 ```
 Do you push it ? (Y/n) : 
