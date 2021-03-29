@@ -22,7 +22,7 @@ def push(stdscr):
         elif key == '\n':
             if(input == 'y' or input == 'Y' or input == ''):
                 stdscr.move(2,0)
-                os.system('git push')
+                os.system('git push -q')
                 break
             elif (input == 'n' or input == 'N'):
                 break
