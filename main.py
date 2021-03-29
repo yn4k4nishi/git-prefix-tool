@@ -12,12 +12,13 @@ def main(stdscr):
     while True:
         stdscr.clear()
         stdscr.keypad(True) 
+        curses.curs_set(1)
         curses.use_default_colors()
         curses.init_pair(2, curses.COLOR_CYAN, -1)
         curses.init_pair(3, curses.COLOR_YELLOW, -1)
 
         stdscr.addstr(0, 0, temp, curses.color_pair(2))
-        stdscr.addstr(1, 0, "Write Body", curses.color_pair(3))
+        stdscr.addstr(1, 0, "Write Body and Pless Enter.", curses.color_pair(3))
         stdscr.addstr(2, 2, body)
         
         stdscr.refresh()
