@@ -54,7 +54,7 @@ git prefix-tool
 ```
 Select Add Files (pless SPACE Key to check).
     [Select ALL]
-  * README.md
+ ✅ README.md
     hoge.cpp
 
 Pless Enter to go next
@@ -63,23 +63,23 @@ Pless Enter to go next
 テンプレートから選択し、Enterで次に進む
 ```
 Select Prefix List Below.
-  Feature            : 新機能の実装
-  Update             : 機能の修正
-  Remove             : 削除
-  Fix                : バグの修正
-  Refactor           : リファクタリング
-  Typo               : タイプミスなどの修正
-  Add-logs           : ログの追加
-  Remove-logs        : ログの削除
-> Document           : ドキュメントの変更
-  Accessibility      : デザインUI/UXの変更
-  Improve-perfomance : フォーマンスの改善
-  Improve-security   : セキュリティ関連の改善
-  Tools              : ツール
-  Tests              : テスト
-  WIP                : Work In Progress
-  Version-tag        : バージョンタグ
-  First              : 初めてのコミット
+  ✨  Feature              : 新機能の実装
+  👍  Update               : 機能の修正
+  🗑️  Remove               : 削除
+  🐛  Fix                  : バグの修正
+  ♻️  Refactor             : リファクタリング
+  ✏️  Typo                 : タイプミスなどの修正
+  🔉  Add-logs             : ログの追加
+  🔇  Remove-logs          : ログの削除
+>>📚  Document             : ドキュメントの変更
+  🎨  Accessibility        : デザインUI/UXの変更
+  🐴  Improve-perfomance   : フォーマンスの改善
+  👮  Improve-security     : セキュリティ関連の改善
+  🔧  Tools                : ツール
+  🚨  Tests                : テスト
+  🚧  WIP                  : Work In Progress
+  🔖  Version-tag          : バージョンタグ
+  🎉  First                : 初めてのコミット
 ```
 
 bodyを入力し、Enterで次に進む
