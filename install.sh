@@ -4,7 +4,7 @@ SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 cd /opt
 
-if[ -d /opt/git-prefix-tool];then
+if [ -d /opt/git-prefix-tool ] ; then
     cd git-prefix-tool
     git pull
     cd ..
