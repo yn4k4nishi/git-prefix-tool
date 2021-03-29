@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 /opt/git-prefix-too/python/main.py
+python3 /opt/git-prefix-tool/python/main.py
