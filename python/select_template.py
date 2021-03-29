@@ -6,7 +6,7 @@ def load_temp(file_path):
         return temp
     
 def select_temp(stdscr):
-    temp = load_temp('/home/suisui/workspace/git-prefix-tool/template.yaml')
+    temp = load_temp('/opt/git-prefix-tool/template.yaml')
     cursor = 1
 
     curses.curs_set(0)
