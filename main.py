@@ -6,7 +6,7 @@ from select_template import select_temp
 def main(stdscr):
     if not curses.has_colors(): raise Exception('このターミナルは色を表示できません。')
     
-    temp = select_temp(stdscr)
+    prefix = select_temp(stdscr)
 
     body = ""
     while True:
@@ -17,7 +17,7 @@ def main(stdscr):
         curses.init_pair(2, curses.COLOR_CYAN, -1)
         curses.init_pair(3, curses.COLOR_YELLOW, -1)
 
-        stdscr.addstr(0, 0, temp, curses.color_pair(2))
+        stdscr.addstr(0, 0, prefix, curses.color_pair(2))
         stdscr.addstr(1, 0, "Write Body and Pless Enter.", curses.color_pair(3))
         stdscr.addstr(2, 2, body)
         
@@ -36,7 +36,7 @@ def main(stdscr):
         if len(key) == 1 and ord(key) == 27: # ESC
             break
         elif key == '\n':
-            break
+            os.system("git commit -m" + prefix + '\n' + body)
         elif key == 'KEY_BACKSPACE':
             body = body[:-1]
         else:
