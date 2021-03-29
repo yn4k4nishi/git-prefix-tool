@@ -2,11 +2,14 @@ import curses, yaml
 
 def load_temp(file_path):
     with open(file_path, 'r') as yml:
-        temp = yaml.load(yml)
+        temp = yaml.load(yml, Loader=yaml.SafeLoader)
         return temp
     
 def select_temp(stdscr):
-    temp = load_temp('/opt/git-prefix-tool/template.yaml')
+    # temp = load_temp('/opt/git-prefix-tool/template.yaml')
+    temp = load_temp('/home/yn4k4nishi/workspace/git-prefix-tool/template.yaml')
+    max_len_prefix = max([len(y) for y in [i.get('prefix') for i in temp['prefix']]])
+
     cursor = 1
 
     curses.curs_set(0)
@@ -24,9 +27,11 @@ def select_temp(stdscr):
         for t in temp['prefix']:
             try:
                 if(i == cursor):
-                    stdscr.addstr(i, 0, "> " +t, curses.color_pair(1))
+                    stdscr.addstr(i, 0, "> " + t['prefix'] + " "*(max_len_prefix - len(t['prefix'])), curses.color_pair(1))
+                    stdscr.addstr(i, max_len_prefix + 2, " : " + t['ditail']                        , curses.color_pair(1))
                 else:
-                    stdscr.addstr(i, 2, t)    
+                    stdscr.addstr(i, 0, "  " + t['prefix'])
+                    stdscr.addstr(i, max_len_prefix + 2,  " : " + t['ditail'])    
             except curses.error:
                 pass
 
@@ -44,9 +49,17 @@ def select_temp(stdscr):
             cursor += 1
             cursor = min(cursor, len(temp['prefix']))
         elif key == '\n':
-            return temp['prefix'][cursor-1]
+            return temp['prefix'][cursor-1]['emoji'] + temp['prefix'][cursor-1]['prefix']
 
         
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     curses.wrapper(select_temp)
+
+    temp = load_temp('/home/yn4k4nishi/workspace/git-prefix-tool/template.yaml')
+    # len_max_emoji = max([len(i) for i in temp['prefix'][:]['emoji']])
+    # print(len_max_emoji)
+    
+    # for t in temp['prefix']:
+    #     print(t)
+        # print(t['emoji'] + '\t' + t['prefix'] + '\t' + t['ditail'])
