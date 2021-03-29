@@ -7,7 +7,7 @@ def add(stdscr):
 
     curses.curs_set(0)
     curses.use_default_colors()
-    curses.init_pair(1, -1, curses.COLOR_GREEN)
+    curses.init_pair(1, -1, curses.COLOR_BLUE)
     curses.init_pair(2, curses.COLOR_YELLOW, -1)
 
     not_staged = ["[Select ALL]"]
@@ -32,7 +32,7 @@ def add(stdscr):
 
             text = "  " + u
             if selected[i-1]:
-                text = "* " + u
+                text = "✅ " + u
             
             try:
                 if(i == cursor):
