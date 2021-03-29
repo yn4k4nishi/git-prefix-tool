@@ -36,7 +36,7 @@ def select_temp(stdscr):
         key = stdscr.getkey()
 
         if len(key) == 1 and ord(key) == 27: # ESC
-            break
+            quit()
         elif key == 'KEY_UP':
             cursor += -1
             cursor = max(cursor, 1)

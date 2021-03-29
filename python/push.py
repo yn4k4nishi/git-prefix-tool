@@ -9,13 +9,14 @@ def push(stdscr):
 
     input = ''
     while True:
-        stdscr.addstr(0,0,"Do you push it ? (Y/n) : " + input, curses.color_pair(2))
-
+        stdscr.addstr(0,0,"Do you push it ? (Y/n) : " + input , curses.color_pair(2))
+        stdscr.addstr(1,0, "")
+        
         stdscr.refresh()
         key = stdscr.getkey()
 
         if len(key) == 1 and ord(key) == 27: # ESC
-            break
+            quit()
         elif key == '\n':
             if(input == 'y' or input == 'Y' or input == ''):
                 os.system('git push')

@@ -33,7 +33,7 @@ def commit(stdscr):
             key = chr(int(tmp,2))
 
         if len(key) == 1 and ord(key) == 27: # ESC
-            break
+            quit()
         elif key == '\n':
             os.system("git commit -m '" + prefix + '\n' + body + "'")
             break
