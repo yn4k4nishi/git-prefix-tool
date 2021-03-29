@@ -23,6 +23,15 @@ def main(stdscr):
         stdscr.refresh()
         key = stdscr.getkey()
 
+        ## 日本語入力に対応
+        if len(key) == 1 and 0xe0 <= ord(key) <= 0xef:
+            a = ord(key)
+            b = stdscr.getch()
+            c = stdscr.getch()
+            tmp = map(lambda x: bin(x)[2:], [0b00001111 & a, 0b00111111 & b, 0b00111111 & c])
+            tmp = ''.join([item.zfill(6) for item in tmp])
+            key = chr(int(tmp,2))
+
         if len(key) == 1 and ord(key) == 27: # ESC
             break
         elif key == '\n':
