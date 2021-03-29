@@ -1,6 +1,6 @@
 # git-prefix-tool
 
-|emoji|prefix|subject|
+|emoji|prefix|ditail|
 |---|---|---|
 |:sparkles:       | Feature            | 新機能の実装|
 |:+1:             | Update             | 機能の修正|
