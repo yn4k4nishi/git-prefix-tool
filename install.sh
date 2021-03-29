@@ -9,7 +9,7 @@ if [ -d /opt/git-prefix-tool ] ; then
     sudo git pull
     cd ..
 else
-    sudo git clone -b dev https://github.com/yn4k4nishi/git-prefix-tool.git
+    sudo git clone https://github.com/yn4k4nishi/git-prefix-tool.git
 fi
 
 sudo chmod 777 git-prefix-tool/git-prefix-tool.sh
