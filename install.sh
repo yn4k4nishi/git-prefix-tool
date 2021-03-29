@@ -10,9 +10,10 @@ sudo git clone https://github.com/yn4k4nishi/git-prefix-tool.git
 
 sudo chmod 700 git-prefix-tool/git-prefix-tool.sh
 
-ln -s git-prefix-tool/git-prefix-tool.sh /usr/local/bin/git-prefix-tool
+# sudo ln -s git-prefix-tool/git-prefix-tool.sh /usr/local/bin/git-prefix-tool
 
 cd
+echo 'export PATH="$PATH:/opt/git-prefix-tool/"' >> ~/.bashrc
 source .bashrc
 
 cd $SCRIPT_DIR
