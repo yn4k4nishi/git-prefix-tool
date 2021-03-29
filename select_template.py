@@ -44,7 +44,7 @@ def select_temp(stdscr):
             cursor += 1
             cursor = min(cursor, len(temp['prefix']))
         elif key == '\n':
-            return temp['prefix'][cursor]
+            return temp['prefix'][cursor-1]
 
         
 
