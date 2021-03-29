@@ -9,6 +9,9 @@ def push(stdscr):
 
     input = ''
     while True:
+        stdscr.clear()
+        stdscr.keypad(True) 
+        
         stdscr.addstr(1,0, "")
         stdscr.addstr(0,0,"Do you push it ? (Y/n) : " + input , curses.color_pair(2))
         
