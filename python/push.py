@@ -1,5 +1,6 @@
 import curses
-import os 
+import os
+
 
 def push(stdscr):
     stdscr.clear()
@@ -10,18 +11,19 @@ def push(stdscr):
     input = ''
     while True:
         stdscr.clear()
-        stdscr.keypad(True) 
+        stdscr.keypad(True)
 
-        stdscr.addstr(0,0,"Do you push it ? (Y/n) : " + input, curses.color_pair(2))
-        
+        msg = "Do you push it ? (Y/n) : "
+        stdscr.addstr(0, 0, msg + input, curses.color_pair(2))
+
         stdscr.refresh()
         key = stdscr.getkey()
 
-        if len(key) == 1 and ord(key) == 27: # ESC
+        if len(key) == 1 and ord(key) == 27:  # ESC
             quit()
         elif key == '\n':
             if(input == 'y' or input == 'Y' or input == ''):
-                stdscr.move(2,0)
+                stdscr.move(2, 0)
                 os.system('git push -q')
                 break
             elif (input == 'n' or input == 'N'):
@@ -32,6 +34,7 @@ def push(stdscr):
             input = key
         elif key == 'KEY_BACKSPACE':
             input = ''
+
 
 if __name__ == "__main__":
     curses.wrapper(push)

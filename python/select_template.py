@@ -1,13 +1,17 @@
-import curses, yaml
+import curses
+import yaml
+
 
 def load_temp(file_path):
     with open(file_path, 'r') as yml:
         temp = yaml.load(yml, Loader=yaml.SafeLoader)
         return temp
-    
+
+
 def select_temp(stdscr):
     temp = load_temp('/opt/git-prefix-tool/template.yaml')
-    max_len_prefix = max([len(y) for y in [i.get('prefix') for i in temp['prefix']]])
+    prefix_list = [i.get('prefix') for i in temp['prefix']]
+    max_len_prefix = max([len(y) for y in prefix_list])
 
     cursor = 1
 
@@ -18,19 +22,23 @@ def select_temp(stdscr):
 
     while True:
         stdscr.clear()
-        stdscr.keypad(True) 
+        stdscr.keypad(True)
 
-        stdscr.addstr(0,0,"Select Prefix List Below.", curses.color_pair(2))
+        msg = "Select Prefix List Below."
+        stdscr.addstr(0, 0, msg, curses.color_pair(2))
 
         i = 1
         for t in temp['prefix']:
             try:
                 if(i == cursor):
-                    stdscr.addstr(i, 0, ">>" + t['emoji'] + '  ' + t['prefix'] + " "*(max_len_prefix + 3 - len(t['prefix'])), curses.color_pair(1))
-                    stdscr.addstr(i, max_len_prefix + 8,  " : " + t['ditail']                                               , curses.color_pair(1))
+                    msg = ">>" + t['emoji'] + '  ' + t['prefix']
+                    msg += " "*(max_len_prefix + 3 - len(t['prefix']))
+                    stdscr.addstr(i, 0, msg, curses.color_pair(1))
+                    msg = " : " + t['ditail']
+                    stdscr.addstr(i, max_len_prefix+8, msg, curses.color_pair(1))
                 else:
                     stdscr.addstr(i, 0, "  " + t['emoji'] + '  ' + t['prefix'])
-                    stdscr.addstr(i, max_len_prefix + 8,  " : " + t['ditail'])    
+                    stdscr.addstr(i, max_len_prefix + 8,  " : " + t['ditail'])
             except curses.error:
                 pass
 
@@ -39,7 +47,7 @@ def select_temp(stdscr):
         stdscr.refresh()
         key = stdscr.getkey()
 
-        if len(key) == 1 and ord(key) == 27: # ESC
+        if len(key) == 1 and ord(key) == 27:  # ESC
             quit()
         elif key == 'KEY_UP':
             cursor += -1
@@ -48,9 +56,10 @@ def select_temp(stdscr):
             cursor += 1
             cursor = min(cursor, len(temp['prefix']))
         elif key == '\n':
-            return temp['prefix'][cursor-1]['emoji_code'] +  " " + temp['prefix'][cursor-1]['prefix']
+            r = temp['prefix'][cursor-1]['emoji_code']
+            r += " " + temp['prefix'][cursor-1]['prefix']
+            return r
 
-        
 
 if __name__ == "__main__":
     curses.wrapper(select_temp)

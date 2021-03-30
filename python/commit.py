@@ -1,7 +1,10 @@
-#coding : utf-8
 #!/usr/bin/env python3
-import os, curses
+# coding : utf-8
+
+import os
+import curses
 from select_template import select_temp
+
 
 def commit(stdscr):
 
@@ -9,8 +12,8 @@ def commit(stdscr):
 
     cursor = 0
     body = ""
-    
-    stdscr.keypad(True) 
+
+    stdscr.keypad(True)
     curses.curs_set(1)
     curses.use_default_colors()
     curses.init_pair(2, curses.COLOR_CYAN, -1)
@@ -20,24 +23,26 @@ def commit(stdscr):
         stdscr.clear()
 
         stdscr.addstr(0, 0, prefix, curses.color_pair(2))
-        stdscr.addstr(1, 0, "Write Body and Pless Enter.", curses.color_pair(3))
+        msg = "Write Body and Pless Enter."
+        stdscr.addstr(1, 0, msg, curses.color_pair(3))
         stdscr.addstr(2, 2, body)
-        
+
         stdscr.move(2, 2 + cursor)
 
         stdscr.refresh()
         key = stdscr.getkey()
 
-        ## 日本語入力に対応
+        # 日本語入力に対応
         if len(key) == 1 and 0xe0 <= ord(key) <= 0xef:
             a = ord(key)
             b = stdscr.getch()
             c = stdscr.getch()
-            tmp = map(lambda x: bin(x)[2:], [0b00001111 & a, 0b00111111 & b, 0b00111111 & c])
+            tmp = map(lambda x: bin(x)[2:],
+                      [0b00001111 & a, 0b00111111 & b, 0b00111111 & c])
             tmp = ''.join([item.zfill(6) for item in tmp])
-            key = chr(int(tmp,2))
+            key = chr(int(tmp, 2))
 
-        if len(key) == 1 and ord(key) == 27: # ESC
+        if len(key) == 1 and ord(key) == 27:  # ESC
             quit()
         elif key == '\n':
             os.system("git commit -m '" + prefix + ' : ' + body + "'")
@@ -57,9 +62,10 @@ def commit(stdscr):
         else:
             body = body[:cursor] + key + body[cursor:]
             cursor += 1
-        
+
         cursor = min(cursor, len(body))
         cursor = max(cursor, 0)
-        
-if __name__ == "__main__":    
+
+
+if __name__ == "__main__":
     curses.wrapper(commit)

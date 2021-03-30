@@ -1,5 +1,7 @@
 import curses
-import os , subprocess
+import os
+import subprocess
+
 
 def add(stdscr):
 
@@ -11,18 +13,25 @@ def add(stdscr):
     curses.init_pair(2, curses.COLOR_YELLOW, -1)
 
     not_staged = ["[Select ALL]"]
+
     cmd = 'git ls-files --others --exclude-standard'
-    not_staged += (subprocess.Popen(cmd, stdout=subprocess.PIPE,shell=True).communicate()[0]).decode('utf-8').split('\n')[:-1]
+    tmp = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+    tmp = tmp.communicate()[0]
+    not_staged += tmp.decode('utf-8').split('\n')[:-1]
+
     cmd = 'git diff --name-only'
-    not_staged += (subprocess.Popen(cmd, stdout=subprocess.PIPE,shell=True).communicate()[0]).decode('utf-8').split('\n')[:-1]
-   
+    tmp = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+    tmp = tmp.communicate()[0]
+    not_staged += tmp.decode('utf-8').split('\n')[:-1]
+
     selected = [True] * len(not_staged)
 
     while True:
         stdscr.clear()
-        stdscr.keypad(True) 
+        stdscr.keypad(True)
 
-        stdscr.addstr(0,0,"Select Add Files (pless SPACE Key to check).", curses.color_pair(2))
+        msg = "Select Add Files (pless SPACE Key to check)."
+        stdscr.addstr(0, 0, msg, curses.color_pair(2))
 
         if selected[0]:
             selected = [True] * len(not_staged)
@@ -33,23 +42,23 @@ def add(stdscr):
             text = "  " + u
             if selected[i-1]:
                 text = "✅ " + u
-            
+
             try:
                 if(i == cursor):
                     stdscr.addstr(i, 2, text, curses.color_pair(1))
                 else:
-                    stdscr.addstr(i, 2, text)    
+                    stdscr.addstr(i, 2, text)
             except curses.error:
                 pass
 
             i += 1
 
-        stdscr.addstr(i+1,0,"Pless Enter to go next", curses.color_pair(2))
+        stdscr.addstr(i+1, 0, "Pless Enter to go next", curses.color_pair(2))
 
         stdscr.refresh()
         key = stdscr.getkey()
 
-        if len(key) == 1 and ord(key) == 27: # ESC
+        if len(key) == 1 and ord(key) == 27:  # ESC
             quit()
         elif key == 'KEY_UP':
             cursor += -1
@@ -58,7 +67,7 @@ def add(stdscr):
             cursor += 1
             cursor = min(cursor, len(not_staged))
         elif key == ' ':
-            selected[cursor-1]  = not selected[cursor-1]
+            selected[cursor-1] = not selected[cursor-1]
             if cursor != 1:
                 selected[0] = False
         elif key == '\n':
@@ -72,6 +81,7 @@ def add(stdscr):
                     if selected[i]:
                         os.system('git add ' + not_staged[i])
                 break
+
 
 if __name__ == "__main__":
     curses.wrapper(add)
