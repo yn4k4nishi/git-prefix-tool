@@ -7,19 +7,24 @@ def commit(stdscr):
 
     prefix = select_temp(stdscr)
 
+    cursor = 0
     body = ""
+    
+    stdscr.keypad(True) 
+    curses.curs_set(1)
+    curses.use_default_colors()
+    curses.init_pair(2, curses.COLOR_CYAN, -1)
+    curses.init_pair(3, curses.COLOR_YELLOW, -1)
+
     while True:
         stdscr.clear()
-        stdscr.keypad(True) 
-        curses.curs_set(1)
-        curses.use_default_colors()
-        curses.init_pair(2, curses.COLOR_CYAN, -1)
-        curses.init_pair(3, curses.COLOR_YELLOW, -1)
 
         stdscr.addstr(0, 0, prefix, curses.color_pair(2))
         stdscr.addstr(1, 0, "Write Body and Pless Enter.", curses.color_pair(3))
         stdscr.addstr(2, 2, body)
         
+        stdscr.move(2, 2 + cursor)
+
         stdscr.refresh()
         key = stdscr.getkey()
 
@@ -38,11 +43,23 @@ def commit(stdscr):
             os.system("git commit -m '" + prefix + ' : ' + body + "'")
             break
         elif key == 'KEY_BACKSPACE':
-            body = body[:-1]
+            if cursor != 0:
+                body = body[:cursor-1] + body[cursor:]
+                cursor += -1
+        elif key == 'KEY_DC':
+            body = body[:cursor] + body[cursor+1:]
+        elif key == 'KEY_LEFT':
+            cursor += -1
+        elif key == 'KEY_RIGHT':
+            cursor += 1
         elif len(key) > 1:
             pass
         else:
-            body += key
+            body = body[:cursor] + key + body[cursor:]
+            cursor += 1
+        
+        cursor = min(cursor, len(body))
+        cursor = max(cursor, 0)
         
 if __name__ == "__main__":    
     curses.wrapper(commit)
