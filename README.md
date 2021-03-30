@@ -1,4 +1,4 @@
-# git-prefix-tool
+# git-prefix-tool [![Build Status](https://travis-ci.com/yn4k4nishi/git-prefix-tool.svg?branch=main)](https://travis-ci.com/yn4k4nishi/git-prefix-tool)
 
 |emoji|prefix|ditail|
 |---|---|---|

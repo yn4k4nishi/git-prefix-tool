@@ -26,6 +26,17 @@ def add(stdscr):
 
     selected = [True] * len(not_staged)
 
+    if len(not_staged) == 1:
+        stdscr.clear()
+        stdscr.keypad(True)
+
+        msg = "Cannot find Changes. Pless some key to finish."
+        stdscr.addstr(0, 0, msg, curses.color_pair(2))
+
+        stdscr.refresh()
+        stdscr.getkey()
+        quit()
+
     while True:
         stdscr.clear()
         stdscr.keypad(True)
