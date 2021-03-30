@@ -39,6 +39,8 @@ def commit(stdscr):
             break
         elif key == 'KEY_BACKSPACE':
             body = body[:-1]
+        elif len(key) > 1:
+            pass
         else:
             body += key
         
