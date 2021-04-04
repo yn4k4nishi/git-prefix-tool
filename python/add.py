@@ -64,7 +64,7 @@ def add(stdscr):
 
             i += 1
 
-        stdscr.addstr(i+1, 0, "Pless Enter to go next", curses.color_pair(2))
+        # stdscr.addstr(i+1, 0, "Pless Enter to go next", curses.color_pair(2))
 
         stdscr.refresh()
         key = stdscr.getkey()
