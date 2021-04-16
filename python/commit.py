@@ -4,6 +4,7 @@
 import os
 import curses
 from select_template import select_temp
+import unicodedata as ucd
 
 
 def commit(stdscr):
@@ -27,7 +28,14 @@ def commit(stdscr):
         stdscr.addstr(1, 0, msg, curses.color_pair(3))
         stdscr.addstr(2, 2, body)
 
-        stdscr.move(2, 2 + cursor)
+        cursor_ = 0
+        for i in body[:cursor]:
+            if ucd.east_asian_width(i) in 'FWA':
+                cursor_ += 2
+            else:
+                cursor_ += 1
+
+        stdscr.move(2, 2 + cursor_)
 
         stdscr.refresh()
         key = stdscr.getkey()
