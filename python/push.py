@@ -1,5 +1,6 @@
 import curses
 import os
+import subprocess as subp
 
 
 def push(stdscr):
@@ -23,8 +24,8 @@ def push(stdscr):
             quit()
         elif key == '\n':
             if(input == 'y' or input == 'Y' or input == ''):
-                stdscr.move(2, 0)
-                os.system('git push -q')
+                # stdscr.move(2, 0)
+                # os.system('git push -q')
                 break
             elif (input == 'n' or input == 'N'):
                 break
@@ -34,6 +35,12 @@ def push(stdscr):
             input = key
         elif key == 'KEY_BACKSPACE':
             input = ''
+
+    if(input == 'y' or input == 'Y' or input == ''):
+        res = subp.run('git push', shell=True, stdout=subp.PIPE, text=True)
+        stdscr.addstr(0, 0, res.stdout)
+        stdscr.refresh()
+        stdscr.getkey()
 
 
 if __name__ == "__main__":
